@@ -11,4 +11,4 @@ data class Topico (
     val autor: Ususario,
     val status: StatusTopico = StatusTopico.NAO_RESPONDIDO,
     val respostas: List<Resposta> = ArrayList()
-        )
+)
