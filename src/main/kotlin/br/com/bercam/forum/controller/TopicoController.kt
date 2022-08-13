@@ -1,5 +1,6 @@
 package br.com.bercam.forum.controller
 
+import br.com.bercam.forum.dto.NovoTopicoDto
 import br.com.bercam.forum.model.Topico
 import br.com.bercam.forum.service.TopicoService
 import org.springframework.web.bind.annotation.GetMapping
@@ -24,7 +25,7 @@ class TopicoController(private val service: TopicoService) {
     }
 
     @PostMapping
-    fun cadastrar(@RequestBody topico: Topico) {
-        return service.cadastrar(topico)
+    fun cadastrar(@RequestBody dto: NovoTopicoDto) {
+        return service.cadastrar(dto)
     }
 }
