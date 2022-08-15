@@ -3,6 +3,7 @@ package br.com.bercam.forum.service
 import br.com.bercam.forum.dto.AtualizacaoTopicoForm
 import br.com.bercam.forum.dto.NovoTopicoForm
 import br.com.bercam.forum.dto.TopicoView
+import br.com.bercam.forum.exception.NotFoundException
 import br.com.bercam.forum.mapper.TopicoFormMapper
 import br.com.bercam.forum.mapper.TopicoViewMapper
 import br.com.bercam.forum.model.Topico
@@ -15,6 +16,7 @@ class TopicoService(
     private var topicos: List<Topico> = ArrayList(),
     private var topicoViewMapper: TopicoViewMapper,
     private var topicoFormMapper: TopicoFormMapper,
+    private var notFoundMessage: String = "Tópico não encontrado!"
 ) {
 
 
@@ -25,7 +27,7 @@ class TopicoService(
     fun buscarPorId(id: Long): TopicoView {
         val topico =  topicos.stream().filter { t ->
             t.id == id
-        }.findFirst().get()
+        }.findFirst().orElseThrow{NotFoundException(notFoundMessage)}
         return topicoViewMapper.map(topico)
     }
 
@@ -39,7 +41,7 @@ class TopicoService(
     fun atualizar(form: AtualizacaoTopicoForm): TopicoView{
         val topico =  topicos.stream().filter { t ->
             t.id == form.id
-        }.findFirst().get()
+        }.findFirst().orElseThrow{NotFoundException(notFoundMessage)}
         val topicoAtualizado = Topico(
             id = form.id,
             titulo = form.titulo,
@@ -57,7 +59,7 @@ class TopicoService(
     fun deletar(id: Long) {
         val topico =  topicos.stream().filter { t ->
             t.id == id
-        }.findFirst().get()
+        }.findFirst().orElseThrow{NotFoundException(notFoundMessage)}
         topicos = topicos.minus(topico)
     }
 }
