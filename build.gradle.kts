@@ -5,6 +5,7 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.12.RELEASE"
 	kotlin("jvm") version "1.6.21"
 	kotlin("plugin.spring") version "1.6.21"
+	kotlin("plugin.jpa") version "1.3.72"
 }
 
 group = "br.com.bercam"
@@ -16,6 +17,8 @@ repositories {
 }
 
 dependencies {
+	implementation("com.h2database:h2:2.1.214")
+	implementation("org.jetbrains.kotlin:kotlin-noarg:1.7.10")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa:2.7.2")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -26,6 +29,7 @@ dependencies {
 	testImplementation("com.h2database:h2:2.1.214")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
+
 
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
