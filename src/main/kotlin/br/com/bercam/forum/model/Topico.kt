@@ -1,10 +1,11 @@
 package br.com.bercam.forum.model
 
+import br.com.bercam.forum.dto.CursoView
 import java.time.LocalDateTime
 import javax.persistence.*
 
 @Entity
-data class Topico (
+data class Topico(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null,
     var titulo: String,

@@ -1,5 +1,7 @@
 ## H2 Configuration
 spring:
+  main:
+    allow-circular-references: true
   h2:
     console:
       enabled: true
