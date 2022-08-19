@@ -8,6 +8,7 @@ import br.com.bercam.forum.mapper.CursoViewMapper
 import br.com.bercam.forum.model.Curso
 import br.com.bercam.forum.repository.CursoRepository
 import org.springframework.stereotype.Service
+import java.util.FormatFlagsConversionMismatchException
 import java.util.stream.Collectors
 
 @Service
@@ -19,8 +20,8 @@ class CursoService(
     ) {
 
     fun buscarPorId(id: Long): Curso {
-        val curso = repository.findById(id).orElseThrow{NotFoundException(notFoundMessage)}
-        return curso
+        return repository.findById(id).orElseThrow { NotFoundException(notFoundMessage) }
+
     }
 
     fun cadastrar(form: NovoCursoForm): CursoView {
